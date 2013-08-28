@@ -25,8 +25,6 @@ def test_1
 	puts obj.detail
 	puts obj.num
 	puts ano.num #this prints the global variable all Alternate objects can see, in this case the count =>2
-
-
 end
 
 
@@ -78,13 +76,6 @@ def test_3
 		
 		decider.greet
 	end
-end
-
-##TEST 4- decider testing... great
-def test_4
-	require './parser_test'
-	poo = Poo.new
-	poo.greet
 end
 
 ############################
