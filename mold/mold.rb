@@ -31,7 +31,9 @@ class Mold
 
 		p = Property.new(type, name, api_key);
 
+		#panic if this property alreadt exists
 		duplicate_panic p
+
 		@properties << p
 	end
 

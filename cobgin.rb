@@ -61,6 +61,7 @@ class Cobgin
 	end
 
 	#create the "objects" managed by the spawner array
+	#this method is exclusively called from Decider
 	def spawn name
 		#puts "Spawner searching for #{name}"
 		mold = @molds.select {|x| x.name.eql? name}
@@ -85,7 +86,6 @@ class Cobgin
 	#write the objects to files
 	def write
 		author = Author.new(@molds, "./Output/")
-
 		author.write
 	end
 
@@ -101,4 +101,4 @@ end
 
 #start cobgin
 cob = Cobgin.new 
-cob.generate 'obg_source_sample.obg'
+cob.generate 'obg_source_sample.cob'

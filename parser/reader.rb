@@ -2,6 +2,8 @@ class Reader
 	attr_accessor :file, :lines
 
 	def initialize (fname)  
+		file_panic fname
+
 		#note the last is optional, the first two are not
 		@file = File.open(fname,"r").read
 
@@ -43,5 +45,11 @@ class Reader
 		lines.each { |line| line.chomp! }
 
 		lines
+	end
+
+	def file_panic fname
+		unless File.exist? fname
+			puts 'PANIC: reader was given a file that does not exist'
+		end
 	end
 end

@@ -5,6 +5,6 @@
 }
 
 @implementation Menu
-@synthesize name, Item
+@synthesize name, items
 
 @end
