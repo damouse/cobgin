@@ -6,15 +6,15 @@ class Reader
 		@file = File.open(fname,"r").read
 
 		@lines = load_lines file
-
-		puts 
 	end 
 
 	## return the next line of the file that contains content, "EOF" if finished
 	def next
-		return 'EOF' if lines.empty? 
-
 		lines.shift
+	end
+
+	def has_next
+		return !lines.empty?
 	end
 
 	private

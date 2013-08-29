@@ -4,7 +4,8 @@ cobgin - an Objective-C Engine
 
 Mickey Barboi
 
-v0.0.1 		8/26/13
+v0.0.01 		8/26/13 	created file
+v0.0.02			8/28		first migration from testbed, wired parsing tools
 
 This is an Objective-C scaffolding tool	used to quickly make the "dumb items" that normally 
 have to be made by hand for every new project. This is somewhat meant for esoteric
@@ -17,6 +18,80 @@ Parts to this tool
 	- internal: internal wiring, or connections between objects
 	- external: external wiring, connections to MBCM and ultimately API
 - author: responsible for writing all of the objects out as objective-c source code
-- panic: deals with errors in any stage of the process
 =end
 
+class Cobgin
+	#imports
+	require './parser/reader'
+	require './parser/decider'
+	require './mold/mold'
+
+	attr_accessor :molds
+
+	def initialize 
+		@molds = Array.new
+	end
+
+	#This is the main entry point of execution for the object. It does everything.
+	#There are FOUR stages to execution: parsing, spawning, wiring, writing
+	def generate fname
+		parse fname
+		#spawn
+		wire
+		write
+
+		log_molds
+	end
+
+	#this method is responsible for handling the reader and decider objects, as 
+	#well as taking care of any setup needed by the two classes
+	def parse fname
+		reader = Reader.new fname
+		decider = Decider.new self
+
+		#feed every line from reader into decider
+		while reader.has_next
+		  	decider.decide reader.next
+		end
+	end
+
+	#create the "objects" managed by the spawner array
+	def spawn name
+		#puts "Spawner searching for #{name}"
+		mold = @molds.select {|x| x.name.eql? name}
+		#puts "Array : #{@molds}"
+
+		mold = mold.shift
+
+		if mold.nil?
+			puts "Spawning  object named #{name}..."
+			mold = Mold.new(name)
+			@molds << mold
+		end
+
+		return mold
+	end
+
+	#wire up the connections, internally and externall between objects
+	def wire
+		
+	end
+
+	#write the objects to files
+	def write
+		
+	end
+
+
+	##HELPER METHODS
+	def log_molds
+		puts "\nInternal object log:"
+		puts @molds
+		puts "\n"
+	end
+end
+
+
+#start cobgin
+cob = Cobgin.new 
+cob.generate 'obg_source_sample.obg'

@@ -1,0 +1,29 @@
+#obgin
+#this is a hypothetical test of what an objective-c scaffolding engine would look like in Ruby
+#pound signs deliniate comments. These lines are ignored
+
+#objects, can be pre-declared or not
+Menu
+Item
+Ingredient
+Store
+
+#after the objects section is the detailing of every objects properties. "DESC" == describe
+#str = NSString
+#arr = NSArray
+#bool = BOOL
+#int = int
+#flt = float
+#dict = NSDictionary
+
+#the first name is the name of the property on the item, the second is the name of the API field (can omit)
+
+Menu
+	str name restaurantName
+	arr Item menuItems 	#this is an example of a "nested" property. Script should know to link these in
+
+#note the indentation. This lets the Decider know they belong to Menu object
+
+Item
+	str name
+	arr Ingredients 

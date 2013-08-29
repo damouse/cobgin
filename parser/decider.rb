@@ -11,24 +11,16 @@ cogbin will hold a list of spawners, created when Decider thinks things need to 
 Decider is ABSOLUTELY STATELESS when between items!
 =end
 class Decider
-	attr_accessor :parent
+	attr_accessor :cogbin
 
-	def initialize (parent)  
+	def initialize cogbin
+		@cogbin = cogbin
 		@last_object = nil
-
-
 	end 
-
-	def greet
-		puts 'hello'
-	end
 
 	#decide what a given line means, act accordingly
 	def decide line
 		input_panic line
-
-		puts line
-		return
 
 		#note... this is stupidly unsafe. Please find a way to sanitize this
 		if line[0].eql? "\t"
@@ -56,19 +48,17 @@ class Decider
 
 		#we have property information, fetch appropriate spawner and issue commands
 		#cogbin will create the spawner if it doesn't exist, else return the matching one
-		mold = cogbin.spawn @last_object
+		mold = @cogbin.spawn @last_object
 		mold.property_add(type, name, link)
-
-		#cogbin property_add 
 	end
 
 	#deal with objects
 	def object line
 		object_panic line
 
-		#at this point line should contain the name of the object, call to parent
+		#at this point line should contain the name of the object, call to cogbin
 		@last_object = line
-		#cogbin spawn line
+		@cogbin.spawn @last_object
 	end
 
 	#panic if something goes wrong
@@ -79,14 +69,15 @@ class Decider
 	end
 
 	def property_panic line
+
 		if @last_object == nil
 			puts 'PANIC: no object found'
 		end
 
 		num = line.split(" ").count
 
-		if(num < 2 || num < 3)
-			puts 'PANIC: property'
+		if(num < 2 || num > 3)
+			puts "PANIC: property. Got #{num} arguments"
 		end
 	end
 
