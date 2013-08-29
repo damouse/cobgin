@@ -1,0 +1,4 @@
+@interface Store : NSObject
+
+
+@end

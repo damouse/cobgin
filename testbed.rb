@@ -12,37 +12,34 @@
 
 class Test
 	require './mold/mold'
+	require './author/author'
 
 	attr_accessor :molds
 
 	def initialize
 		@molds = Array.new		
-		puts 'hello'
+		puts 'TESTBED LAUNCHING'
 	end
 
 	#TEST 1- objects and stuff
 	def test_1
-		puts spawn 'phil'
-		puts spawn 'menu'
-		puts spawn 'goodies'
-		puts spawn 'phil'
+		puts write 'int'
+		puts write 'str'
 	end
 
-	def spawn name
-		#puts "Spawner searching for #{name}"
-		mold = @molds.select {|x| x.name.eql? name}
-		#puts "Array : #{@molds}"
+	def write str
+		ret = ''
 
-		mold = mold.shift
+		case str
 
-		if mold.nil?
-			puts "No existing mold found for #{name}, spawning..."
-			mold = Mold.new(name)
-			@molds << mold
+		when 'int' then ret = 'int'
+		when 'str' then ret = 'NSString'
+		
 		end
 
-		return mold
+		ret
 	end
+
 end
 
 

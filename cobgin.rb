@@ -13,7 +13,10 @@ use since it pairs with MBConnectionManager (a custom, unreleased framework)
 	
 Parts to this tool
 - parser: parses the files, does all the things
+	- reader: goes through the source code line by line, removing comments and whitespace
+	- decider: interprets the commands in the source code
 - mold: acts as a mold for objective-c objects, is filled with information and knows how to write itself
+	- property: abstract representation of an objective-c property
 - electrician: broadly speaking, this takes care of all the wiring between created files (get it?)
 	- internal: internal wiring, or connections between objects
 	- external: external wiring, connections to MBCM and ultimately API
@@ -25,6 +28,7 @@ class Cobgin
 	require './parser/reader'
 	require './parser/decider'
 	require './mold/mold'
+	require './author/author'
 
 	attr_accessor :molds
 
@@ -34,13 +38,14 @@ class Cobgin
 
 	#This is the main entry point of execution for the object. It does everything.
 	#There are FOUR stages to execution: parsing, spawning, wiring, writing
+	#NOTE: the decider is in charge of spawning. The method is here so that cobgin 
+	#retains overarching control of the process and the molds
 	def generate fname
 		parse fname
-		#spawn
 		wire
 		write
 
-		log_molds
+		#log_molds
 	end
 
 	#this method is responsible for handling the reader and decider objects, as 
@@ -72,14 +77,16 @@ class Cobgin
 		return mold
 	end
 
-	#wire up the connections, internally and externall between objects
+	#wire up the connections, internally and externally between objects
 	def wire
 		
 	end
 
 	#write the objects to files
 	def write
-		
+		author = Author.new(@molds, "./Output/")
+
+		author.write
 	end
 
 
