@@ -1,0 +1,3 @@
+class Mold
+
+end

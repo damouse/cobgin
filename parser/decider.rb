@@ -1,53 +1,3 @@
-##Test class for the parsing "reader,"
-class Reader
-	attr_accessor :file, :lines
-
-	def initialize (fname)  
-		#note the last is optional, the first two are not
-		@file = File.open(fname,"r").read
-
-		@lines = load_lines file
-
-		puts 
-	end 
-
-	## return the next line of the file that contains content, "EOF" if finished
-	def next
-		return 'EOF' if lines.empty? 
-
-		lines.shift
-	end
-
-	private
-	##load the lines from the file, remove comments, blank lines, whitespace, set the ivar
-	def load_lines file
-
-		lines = Array.new
-		lines = @file.split("\n")
-
-		#fuck that, i dont like the dyanmic feed, just pre-parse it
-		lines.map! do |line| #map overwrites the old array
-			if line.include? '#'
-				split = line.split '#'
-				#puts split.to_s
-				split.shift
-			else
-				line
-			end
-		end
-
-		#removing blank lines
-		lines.delete_if do |line|
-			true if line.empty?
-		end
-
-		lines.each { |line| line.chomp! }
-
-		lines
-	end
-
-end
-
 =begin 
 Decides what lines actually mean, acts acordingly
 The tricky part here is going to be managing control of Parser and allowing 
@@ -66,7 +16,7 @@ class Decider
 	def initialize (parent)  
 		@last_object = nil
 
-		
+
 	end 
 
 	def greet
@@ -106,8 +56,8 @@ class Decider
 
 		#we have property information, fetch appropriate spawner and issue commands
 		#cogbin will create the spawner if it doesn't exist, else return the matching one
-		spawner = cogbin.spawn @last_object
-		spawner.property_add(type, name, link)
+		mold = cogbin.spawn @last_object
+		mold.property_add(type, name, link)
 
 		#cogbin property_add 
 	end
@@ -118,7 +68,7 @@ class Decider
 
 		#at this point line should contain the name of the object, call to parent
 		@last_object = line
-		#cogbin object_found line
+		#cogbin spawn line
 	end
 
 	#panic if something goes wrong
@@ -143,9 +93,4 @@ class Decider
 	def input_panic line
 
 	end
-end
-
-## creates and populates objects
-class Spawner
-	
 end

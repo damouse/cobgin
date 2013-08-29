@@ -17,9 +17,10 @@ Store
 #dict = NSDictionary
 
 #the first name is the name of the property on the item, the second is the name of the API field (can omit)
+
 Menu
 	str name restaurantName
-	arr Item menuItems 	#this is an example of a "nested" property. Script should know to link these in API
+	arr Item menuItems 	#this is an example of a "nested" property. Script should know to link these in
 
 #note the indentation. This lets the Decider know they belong to Menu object
 

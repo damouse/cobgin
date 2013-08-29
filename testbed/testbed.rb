@@ -25,8 +25,6 @@ def test_1
 	puts obj.detail
 	puts obj.num
 	puts ano.num #this prints the global variable all Alternate objects can see, in this case the count =>2
-
-
 end
 
 
@@ -91,7 +89,6 @@ def test_5
 	j = 7 #=>
 	i + j #=>
 end
-
 ############################
 ############################
 #TOP LEVEL TESTING EXECUTION-- dont put anything put the current test here!
