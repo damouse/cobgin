@@ -48,13 +48,6 @@ class Reader
 
 end
 
-class Poo
-	require './testbed'
-	def greet
-		puts 'poo'
-	end
-end
-
 =begin 
 Decides what lines actually mean, acts acordingly
 The tricky part here is going to be managing control of Parser and allowing 
@@ -68,7 +61,6 @@ cogbin will hold a list of spawners, created when Decider thinks things need to 
 Decider is ABSOLUTELY STATELESS when between items!
 =end
 class Decider
-	require_relative 'testbed'
 
 	def initialize ()  
 		@last_object = nil

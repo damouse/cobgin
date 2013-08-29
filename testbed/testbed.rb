@@ -64,7 +64,6 @@ def test_2
 
 end
 
-
 ##TEST 3- parser test 1-- WORKS
 def test_3	
 	require './parser_test'
@@ -83,12 +82,23 @@ end
 ##TEST 4- decider testing... great
 def test_4
 	require './parser_test'
-	poo = Poo.new
+	poo = Poo.new(self)
 	poo.greet
+end
+
+def test_5
+	i = 4 #=>
+	j = 7 #=>
+	i + j #=>
 end
 
 ############################
 ############################
 #TOP LEVEL TESTING EXECUTION-- dont put anything put the current test here!
-test_4
+test_5
+
+i = 4 #=>
+j = 7 #=>
+k = i + j #=>
+
 #END EXECUTION
