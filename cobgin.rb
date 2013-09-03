@@ -62,7 +62,7 @@ class Cobgin
 
 	#create the "objects" managed by the spawner array
 	#this method is exclusively called from Decider
-	def spawn name
+	def spawn (name, link)
 		#puts "Spawner searching for #{name}"
 		mold = @molds.select {|x| x.name.eql? name}
 		#puts "Array : #{@molds}"
@@ -71,7 +71,7 @@ class Cobgin
 
 		if mold.nil?
 			puts "Spawning  object named #{name}..."
-			mold = Mold.new(name)
+			mold = Mold.new(name, link)
 			@molds << mold
 		end
 
@@ -85,8 +85,12 @@ class Cobgin
 
 	#write the objects to files
 	def write
+		#authors write the model source
 		author = Author.new(@molds, "./Output/")
 		author.write
+
+		#electrician = Electrician.new(@molds, "./Output/")
+		#electrician.write
 	end
 
 

@@ -41,29 +41,42 @@ class Decider
 		type = split[0]
 		name = split[1]
 		link = nil
+		object = nil
 
 		if split.count > 2 
 			link = split[2] 
+
+			if link.include?('(')
+				#if the link includes a parenthesis, theres an array of Objects
+				nested = link.split('(')
+				#link = nested.shift
+
+				object = nested[1].delete(')')
+				object = 'object : '  << object
+				#puts object
+			end
 		end
 
 		#we have property information, fetch appropriate spawner and issue commands
 		#cogbin will create the spawner if it doesn't exist, else return the matching one
-		mold = @cogbin.spawn @last_object
-		mold.property_add(type, name, link)
+		mold = @cogbin.spawn(@last_object, nil)
+		mold.property_add(type, name, link, object)
 	end
 
 	#deal with objects
 	def object line
 		object_panic line
 
+		split = line.split(" ")
+
 		#at this point line should contain the name of the object, call to cogbin
-		@last_object = line
-		@cogbin.spawn @last_object
+		@last_object = split.shift
+		@cogbin.spawn @last_object, split.shift
 	end
 
 	#panic if something goes wrong
 	def object_panic line
-		if line.split(" ").count > 1
+		if line.split(" ").count != 2
 			puts 'PANIC: object'
 		end
 	end

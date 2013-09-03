@@ -15,8 +15,6 @@ class Author
 			write_object(mold.name + ".h", mold.write_h)
 			write_object(mold.name + ".m", mold.write_m)
 		end
-
-		
 	end
 
 	private

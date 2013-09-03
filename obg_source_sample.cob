@@ -15,16 +15,12 @@
 #item type (included in this document). MUST BE INCLUDED TO BE HOOKED UP
 
 #objects, can be pre-declared or not (duplicate declarations of the objects are ignored)
-Menu
-Item
-Ingredient
-Store
 
 #note that properties have to be tabbed in
-Menu
+Menu url/Menu
 	str name restaurantName
 	arr items menuItems(Items) 
 
-Item
+Item url/Item
 	str name
 	arr Ingredients 
