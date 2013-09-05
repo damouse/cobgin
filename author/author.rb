@@ -20,6 +20,7 @@ class Author
 	private
 	#writes an individual object's source code files out
 	def write_object(name, text)
+
 		dir = @path + name
 
 		File.open(dir, "wb") do |file|
@@ -33,6 +34,5 @@ class Author
 			fn = File.join(path, f);
 			File.delete(fn) if f != '.' && f != '..'
 		end
-
 	end
 end

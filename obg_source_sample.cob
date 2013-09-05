@@ -19,8 +19,11 @@
 #note that properties have to be tabbed in
 Menu url/Menu
 	str name restaurantName
-	arr items menuItems(Items) 
+	arr items menuItems(Item) 
 
 Item url/Item
-	str name
-	arr Ingredients 
+	str name itemName
+	arr ingredients ingredientAPI(Ingredient) 
+
+Ingredient
+	str flavor theIngredianFlavor

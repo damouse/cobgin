@@ -29,6 +29,7 @@ class Cobgin
 	require './parser/decider'
 	require './mold/mold'
 	require './author/author'
+	require './electrician/electrician'
 
 	attr_accessor :molds
 
@@ -42,8 +43,8 @@ class Cobgin
 	#retains overarching control of the process and the molds
 	def generate fname
 		parse fname
-		wire
 		write
+		wire
 
 		#log_molds
 	end
@@ -80,7 +81,8 @@ class Cobgin
 
 	#wire up the connections, internally and externally between objects
 	def wire
-		
+		electrician = Electrician.new(@molds, "./Output/", 'CLConnectionManager')
+		electrician.write
 	end
 
 	#write the objects to files
@@ -88,9 +90,6 @@ class Cobgin
 		#authors write the model source
 		author = Author.new(@molds, "./Output/")
 		author.write
-
-		#electrician = Electrician.new(@molds, "./Output/")
-		#electrician.write
 	end
 
 

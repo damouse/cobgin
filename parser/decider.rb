@@ -23,8 +23,6 @@ class Decider
 		input_panic line
 
 		#note... this is stupidly unsafe. Please find a way to sanitize this
-		puts 'Char at position 0 ' << line[0].ord.to_s
-
 		if line[0].ord.eql? 9
 			property line
 		else
@@ -54,7 +52,7 @@ class Decider
 				#link = nested.shift
 
 				object = nested[1].delete(')')
-				object = 'object : '  << object
+				object = object
 				#puts object
 			end
 		end
@@ -62,6 +60,7 @@ class Decider
 		#we have property information, fetch appropriate spawner and issue commands
 		#cogbin will create the spawner if it doesn't exist, else return the matching one
 		mold = @cogbin.spawn(@last_object, nil)
+
 		mold.property_add(type, name, link, object)
 	end
 
@@ -78,7 +77,7 @@ class Decider
 
 	#panic if something goes wrong
 	def object_panic line
-		if line.split(" ").count != 2
+		if line.split(" ").count > 2
 			puts 'PANIC: object. Line: ' << line
 		end
 	end

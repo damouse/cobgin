@@ -1,6 +1,6 @@
 #abstract representation of an objective-c property
 class Property
-	attr_accessor :name, :type, :api, :custom_object, :nested
+	attr_accessor :name, :type, :api, :nested
 
 	def initialize (type, name, api = nil, nested = nil)
 		@name = name
@@ -10,7 +10,7 @@ class Property
 	end
 
 	def to_s
-		"#{@type} #{@name} #{@api} #{@nested}"
+		"#{@type}, #{@name}, #{@api}, #{@nested}"
 	end
 
 	#return the source code representation of this property

@@ -8,6 +8,7 @@ objective-c objects.
 
 class Mold
 	require './mold/property'
+	require './electrician/wire_internal'
 
 	attr_accessor :name, :properties, :url
 
@@ -40,16 +41,21 @@ class Mold
 
 	#returns a string that is the source code of this object's .h file
 	def write_h
+		#puts "#{@name} url: #{@url}"
+
 		ret = "@interface #{@name} : NSObject\n\n"
 
 		@properties.each { |p| ret << p.write }
+
+		ret << "\n+ (RKObjectMapping *) mapping;\n"
 
 		ret << "\n@end"
 	end
 
 	#returns a string that is the source code of this object's .m file
 	def write_m
-		ret = "#import \"#{@name}.h\"\n\n"
+		ret = "#import \"#{@name}.h\"\n"
+		ret << import #get all the needed imports
 		ret << "@interface #{@name} {\n\n}\n\n"
 		ret << "@implementation #{name}\n"
 
@@ -60,24 +66,24 @@ class Mold
 			ret.chop!.chop!
 		end
 
-		ret << mapping_boring
-		#ret << mapping
+		#create the internal wiring electrician, use him to write out the mapping function
+		electrician = Wire_Internal.new @properties
+		ret << electrician.write
 
 		ret << "\n\n@end"
 	end
 
 	private
-	def mapping
-		#write the mapping inside the .m file
-	end
+	def import
+		ret = ''
 
-	def mapping_boring
-		#write the boring crap in the mapper
-		boring =  "#pragma mark Connection Manager\n"
-		boring << "(RKObjectMapping *) mapping {\n"
-		boring << "//returns the mapping needed by RestKit to perform API calls\n"
-		boring << "RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[self class]];\n"
-		
+		@properties.each do |p|
+			unless p.nested == nil
+				ret << "#import \"#{p.nested}.h\"\n"
+			end
+		end
+
+		ret << "\n"
 	end
 
 	def duplicate_panic property
