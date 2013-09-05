@@ -1,23 +1,22 @@
 #import "Menu.h"
-#import "Item.h"
+#import "Group.h"
 
 @interface Menu {
 
 }
 
 @implementation Menu
-@synthesize name, items
+@synthesize groups
 
 #pragma mark Connection Manager
 + (RKObjectMapping *) mapping {
 	//returns the mapping needed by RestKit to perform API calls
 	RKObjectMapping* mapping = [RKObjectMapping mappingForClass:[self class]];
-	[restaurantMapping addAttributeMappingsFromDictionary:@{
-	@"restaurantName": @"name"  }];
+	[mapping addAttributeMappingsFromDictionary:@{  }];
 
-	RKObjectMapping *itemMapping = [Item mapping];
-	RKRelationshipMapping *itemRelation = [RKRelationshipMapping relationshipMappingFromKeyPath:@"menuItems" toKeyPath:@"items" withMapping:itemMapping];
-	[mapping addPropertyMapping:itemRelation];
+	RKObjectMapping *groupMapping = [Group mapping];
+	RKRelationshipMapping *groupRelation = [RKRelationshipMapping relationshipMappingFromKeyPath:@"GroupNode" toKeyPath:@"groups" withMapping:groupMapping];
+	[mapping addPropertyMapping:groupRelation];
 
 	return mapping;
 }

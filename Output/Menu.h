@@ -1,7 +1,6 @@
 @interface Menu : NSObject
 
-@property (strong, nonatomic) NSString * name;
-@property (strong, nonatomic) NSArray * items;
+@property (strong, nonatomic) NSArray * groups;
 
 + (RKObjectMapping *) mapping;
 
