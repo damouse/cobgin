@@ -23,7 +23,9 @@ class Decider
 		input_panic line
 
 		#note... this is stupidly unsafe. Please find a way to sanitize this
-		if line[0].eql? "\t"
+		puts 'Char at position 0 ' << line[0].ord.to_s
+
+		if line[0].ord.eql? 9
 			property line
 		else
 			object line
@@ -77,7 +79,7 @@ class Decider
 	#panic if something goes wrong
 	def object_panic line
 		if line.split(" ").count != 2
-			puts 'PANIC: object'
+			puts 'PANIC: object. Line: ' << line
 		end
 	end
 

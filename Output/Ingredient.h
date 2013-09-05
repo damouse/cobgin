@@ -1,4 +1,0 @@
-@interface Ingredient : NSObject
-
-
-@end
