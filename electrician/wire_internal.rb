@@ -14,7 +14,7 @@ class Wire_Internal
 		ret << attributes
 		ret << relationships
 
-		ret << "\treturn mapping;\n}\n"
+		ret << "\treturn mapping;\n}\n\n"
 	end
 
 
@@ -24,7 +24,7 @@ class Wire_Internal
 		boring << "+ (RKObjectMapping *) mapping {\n"
 		boring << "\t//returns the mapping needed by RestKit to perform API calls\n"
 		boring << "\tRKObjectMapping* mapping = [RKObjectMapping mappingForClass:[self class]];\n"
-		boring << "\t[restaurantMapping addAttributeMappingsFromDictionary:@{"
+		boring << "\t[mapping addAttributeMappingsFromDictionary:@{"
 	end
 
 	def attributes

@@ -7,10 +7,13 @@ Mickey Barboi
 v0.0.01 		8/26/13 	created file
 v0.0.02			8/28		first migration from testbed, wired parsing tools
 
+BUGS
+- Writing code is split among 4 files. Really? Fix this you moron. 
+
 This is an Objective-C scaffolding tool	used to quickly make the "dumb items" that normally 
 have to be made by hand for every new project. This is somewhat meant for esoteric
 use since it pairs with MBConnectionManager (a custom, unreleased framework)
-	
+
 Parts to this tool
 - parser: parses the files, does all the things
 	- reader: goes through the source code line by line, removing comments and whitespace

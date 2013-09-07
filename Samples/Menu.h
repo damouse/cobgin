@@ -1,11 +1,8 @@
 //
+//  Culvers
 //
-// Menu
-// This is an object created by COBGIN
-//
-//
-// by Mickey Barboi
-//
+//  Created by Mickey Barboi on 8/29/13.
+//  Copyright (c) 2013 HardinDD. All rights reserved.
 //
 
 

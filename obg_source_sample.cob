@@ -17,13 +17,67 @@
 #objects, can be pre-declared or not (duplicate declarations of the objects are ignored)
 
 #note that properties have to be tabbed in
-Menu url/Menu
-	str name restaurantName
-	arr items menuItems(Item) 
+#Menu url/Menu
+#	str name restaurantName
+#	arr items menuItems(Item) 
 
-Item url/Item
-	str name itemName
-	arr ingredients ingredientAPI(Ingredient) 
+#Item url/Item
+#	str name itemName
+#	arr ingredients ingredientAPI(Ingredient) 
+
+Restaurant http://www.culvers.com/cws2/queryalllocations.aspx
+	str restaurantID restaurantKey
+	str number restaurantNumber
+	str name restaurantName
+	str hours hours
+	str mailingAddress mainAddress
+	str city city
+	str state state
+	str zip zipCode
+	str phone phone
+	str address physicalAddress
+	str url url
+
+Flavor http://www.culvers.com/cws2/queryflavors.aspx
+	str flavorID flavorID
+	str name flavorName
+	str description flavorDescription
+	bool live isLive
+	str image fotdImage
+
+Menu http://www.culvers.com/cws2/querymenudisplay.aspx
+	arr groups GroupNode(Group)
 
 Ingredient
-	str flavor theIngredianFlavor
+	str ingredientID 
+	str name aIngredient
+	str calories calories
+	str caloriesFat calFromFat
+	str totalFat totalFat
+	str satFat satFat
+	str transFat transFat
+	str carbs carbs
+	str protein protein
+	str sugar sugar
+	str cholesterol cholesterol
+	str fiber dietFiber
+	str servingSize servingSize
+	str sodium sodium
+
+Item
+	str itemID aIdMenuItem
+	str description aDescription
+	str image afileName
+	str name aMenuItem
+	arr ingredients IngNode(Ingredient)
+	bool androidEnabled IsAndroidEnabled
+	bool ecoprintEnabled IsEconoprintEnabled
+	bool iphoneEnabled IsIPhoneEnabled
+	arr allergens zAllergenNode
+
+Group
+	str menuID aIdMenuGroup
+	str name aMenuGroup
+	arr items MenuItemNode(Item)
+
+#note: haven't done FOTD yet
